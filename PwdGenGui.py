@@ -19,20 +19,23 @@ class QLabelBuddy(QDialog, QWidget) :
         self.lowercaseyes.lovercase = "1"
         self.lowercaseno = QRadioButton("No")
         self.lowercaseno.lovercase = "0"
+        self.lowercaseyes.setChecked(True)
         
         # uppercase
         self.uppercaseLabel = QLabel('Uppercase',self)
-        self.uppercaseyes = QRadioButton(text = "Yes")
+        self.uppercaseyes = QRadioButton("Yes")
         self.uppercaseyes.uppercase = "1"
         self.uppercaseno = QRadioButton("No")
         self.uppercaseno.uppercase = "0"
-        
+        self.uppercaseyes.setChecked(True)
+
         # digits
         self.digitsLabel = QLabel('Digits',self)
         self.digitsyes = QRadioButton("Yes")
         self.digitsyes.digits = "1"
         self.digitsno = QRadioButton("No")
         self.digitsno.digits = "0"
+        self.digitsyes.setChecked(True)
 
         # punctuation
         self.punctuationLabel = QLabel('Punctuation',self)
@@ -40,11 +43,13 @@ class QLabelBuddy(QDialog, QWidget) :
         self.punctuationyes.punctuation = "1"
         self.punctuationno = QRadioButton("No")
         self.punctuationno.punctuation = "0"
+        self.punctuationyes.setChecked(True)
 
         # Line edit length password
         self.countLabel = QLabel('Length',self)
         self.countLineEdit = QLineEdit(self)
         self.countLabel.setBuddy(self.countLineEdit)
+        self.countLineEdit.setText("8")
 
         self.BtnGroupLowercase = QButtonGroup()
         self.BtnGroupLowercase.addButton(self.lowercaseyes)
@@ -63,6 +68,7 @@ class QLabelBuddy(QDialog, QWidget) :
         self.BtnGroupPunctuation.addButton(self.punctuationno)
 
         mainLayout = QGridLayout(self)
+        self.lowercaseyes.setEnabled(True)
 
         # lowercase add to window
         mainLayout.addWidget(lowercaseLabel, 0, 1)
@@ -106,7 +112,7 @@ class QLabelBuddy(QDialog, QWidget) :
 
         #diactivate button
         self.copy.setEnabled(False)
-        self.generate.setEnabled(False)
+        #self.generate.setEnabled(False)
 
 
     def textChanged(self, s):
