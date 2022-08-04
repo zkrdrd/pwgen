@@ -1,5 +1,4 @@
-import random
-import string
+import secrets, string
 
 lower = string.ascii_lowercase
 upper = string.ascii_uppercase
@@ -61,8 +60,7 @@ def settings():
 
 def generate(all):
     length = int(input('\nEnter the length of password: '))
-    temp = random.sample(all,length)
-    password = "".join(temp)
+    password = "".join(secrets.choice(all) for i in range(length)) 
     print(password)
 
     #all = string.ascii_letters + string.digits + string.punctuation

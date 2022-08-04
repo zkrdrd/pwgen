@@ -1,7 +1,5 @@
 from PyQt5.QtWidgets import QLabel, QRadioButton, QDialog, QWidget, QLineEdit, QButtonGroup, QPushButton, QGridLayout, QApplication
-import sys
-import random
-import string
+import sys, secrets, string
 import pyperclip as clipboard
 
 class QLabelBuddy(QDialog, QWidget) :
@@ -148,8 +146,7 @@ class QLabelBuddy(QDialog, QWidget) :
             all = all + symbols
         else: all = all
         length = count
-        temp = random.sample(all,length)
-        password = "".join(temp)
+        password = "".join(secrets.choice(all) for i in range(length)) 
         self.pwd.setText(password)
         if len(self.pwd.text()) > 0:
             self.copy.setEnabled(True)
