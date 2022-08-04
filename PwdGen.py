@@ -67,6 +67,6 @@ def generate(all):
     #passwd = "".join(random.sample(all,length))
     #print(passwd)
 
-print('Welcome to Password generator!')
+print('\nWelcome to Password generator!\n')
 settings()
 generate(all)
