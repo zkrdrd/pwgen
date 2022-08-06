@@ -1,4 +1,4 @@
-import secrets, string, sys
+import secrets, string, sys, pyperclip
 
 class Config(object):
     lower = string.ascii_lowercase
@@ -69,6 +69,8 @@ def generate(all):
             length = int(length)
             password = "".join(secrets.choice(all) for i in range(length)) 
             print('\nPassword -> %s' % password)
+            pyperclip.copy(password)
+            print ("The Password to be copied to the clipboard!")
             flag = True
 
 
