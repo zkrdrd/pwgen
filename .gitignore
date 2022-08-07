@@ -4,3 +4,6 @@
 *.spec
 /output
 *.sh
+/Console/src/__pycache__
+/Gui/src/gui/__pycache__
+/Gui/src/func/__pycache__

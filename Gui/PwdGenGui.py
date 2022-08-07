@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QLabel, QRadioButton, QDialog, QWidget, QLineEdit, QButtonGroup, QPushButton, QGridLayout, QApplication
 import sys, secrets, string, pyperclip
+
 class QLabelBuddy(QDialog, QWidget) :
     def __init__(self):
         super().__init__()
@@ -108,8 +109,6 @@ class QLabelBuddy(QDialog, QWidget) :
 
         #diactivate button
         self.copy.setEnabled(False)
-        #self.generate.setEnabled(False)
-
 
     def textChanged(self, s):
         if s:
@@ -120,7 +119,6 @@ class QLabelBuddy(QDialog, QWidget) :
     def onClickCopy(self):
         pyperclip.copy(self.pwd.text())
         
-
     def GeneratePwd(self):
         all = ""
         count = int(self.countLineEdit.text())
