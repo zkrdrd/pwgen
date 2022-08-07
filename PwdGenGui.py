@@ -1,7 +1,5 @@
 from PyQt5.QtWidgets import QLabel, QRadioButton, QDialog, QWidget, QLineEdit, QButtonGroup, QPushButton, QGridLayout, QApplication
-import sys, secrets, string
-import pyperclip as clipboard
-
+import sys, secrets, string, pyperclip
 class QLabelBuddy(QDialog, QWidget) :
     def __init__(self):
         super().__init__()
@@ -120,36 +118,32 @@ class QLabelBuddy(QDialog, QWidget) :
             self.generate.setEnabled(False)
 
     def onClickCopy(self):
-        clipboard.copy(self.pwd.text())
+        pyperclip.copy(self.pwd.text())
+        
 
     def GeneratePwd(self):
-        lower = string.ascii_lowercase
-        upper = string.ascii_uppercase
-        num = string.digits
-        symbols = string.punctuation
         all = ""
-        lovercase = self.lowercaseyes.isChecked()
-        uppercase = self.uppercaseyes.isChecked()
-        digits = self.digitsyes.isChecked()
-        punctuation = self.punctuationyes.isChecked()
         count = int(self.countLineEdit.text())
-        if lovercase == True:
-            all = all + lower
+        if self.lowercaseyes.isChecked() == True:
+            all = all + string.ascii_lowercase
         else: all = all
-        if uppercase == True:
-            all = all + upper
+        if self.uppercaseyes.isChecked() == True:
+            all = all + string.ascii_uppercase
         else: all = all
-        if digits == True:
-            all = all + num
+        if self.digitsyes.isChecked() == True:
+            all = all + string.digits
         else: all = all
-        if punctuation == True:
-            all = all + symbols
+        if self.punctuationyes.isChecked() == True:
+            all = all + string.punctuation
         else: all = all
-        length = count
-        password = "".join(secrets.choice(all) for i in range(length)) 
-        self.pwd.setText(password)
-        if len(self.pwd.text()) > 0:
-            self.copy.setEnabled(True)
+        if (all == ""):
+            self.pwd.setText("Error: all parameters is empty")
+        else:
+            length = count
+            password = "".join(secrets.choice(all) for i in range(length)) 
+            self.pwd.setText(password)
+            if len(self.pwd.text()) > 0:
+                self.copy.setEnabled(True)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -36,9 +36,15 @@ def generate(all):
             print ("The Password to be copied to the clipboard!")
             flag = True
 
+def check(all):
+    if all == "": 
+        print("\nError: All parameters in null!\nStart now.")
+        settings()
+
 def app():
     print('\nWelcome to Password generator!')
     settings()
+    check(all)
     generate(all)
     flag = False
     while not flag:
@@ -47,16 +53,20 @@ def app():
             current = input('\nUse current settings? (Y,y/N,n)')
             if current == "y" or current == "Y":
                 generate(all)
+                flag = True
             elif current == "N" or current == "n":
                 settings()
+                check(all)
                 generate(all)
-            else: 
+                flag = True
+            else:
                 print ("\nIncorrect symbol\nWrite Y or N")
+                flag = False
         elif new == "N" or new == "n":
             print ("\nExit\n")
             sys.exit()
         else: 
-            flag = True
+            flag = False
             print ("\nIncorrect symbol\nWrite Y or N")
 
 if __name__ == "__main__":
