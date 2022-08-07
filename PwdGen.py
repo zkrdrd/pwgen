@@ -1,62 +1,25 @@
 import secrets, string, sys, pyperclip
 
 class Config(object):
-    lower = string.ascii_lowercase
-    upper = string.ascii_uppercase
-    num = string.digits
-    symbols = string.punctuation
+    inputs = ["\nDo use lowercase? (Y,y/N,n) ", "\nDo use uppercase? (Y,y/N,n) ", "\nDo use digits? (Y,y/N,n) ", "\nDo use symbols? (Y,y/N,n) "]
+    variables = [string.ascii_lowercase, string.ascii_uppercase, string.digits, string.punctuation]
 
 def settings():
     global all
     all = ""
-    flag = False
-    while not flag:
-        lc = input("\nDo use lowercase? (Y,y/N,n)")
-        if lc == "y" or lc == "Y":
-            all = all + Config.lower
-            flag = True
-        elif lc == "N" or lc == "n":
-            all = all
-            flag = True
-        else: 
-            flag = False
-            print ("\nIncorrect symbol\nWrite Y or N")
-    flag = False
-    while not flag:
-        uc = input("\nDo use uppercase? (Y,y/N,n)")
-        if uc == "y" or uc == "Y":
-            all = all + Config.upper
-            flag = True
-        elif uc == "N" or uc == "n":
-            all = all
-            flag = True
-        else: 
-            flag = False
-            print ("\nIncorrect symbol\nWrite Y or N")
-    flag = False
-    while not flag:
-        digit = input("\nDo use digits? (Y,y/N,n)")
-        if digit == "y" or digit == "Y":
-            all = all + Config.num
-            flag = True
-        elif digit == "N" or digit == "n":
-            all = all
-            flag = True
-        else: 
-            flag = False
-            print ("\nIncorrect symbol\nWrite Y or N")
-    flag = False
-    while not flag:
-        sumbol = input("\nDo use punctuation? (Y,y/N,n)")
-        if sumbol == "y" or sumbol == "Y":
-            all = all + Config.symbols
-            flag = True
-        elif sumbol == "N" or sumbol == "n":
-            all = all
-            flag = True
-        else: 
-            flag = False
-            print ("\nIncorrect symbol\nWrite Y or N")
+    for i,j  in zip(Config.inputs, Config.variables):
+        flag = False
+        while not flag:
+            inp = input(i)
+            if inp == "y" or inp == "Y":
+                all = all + j
+                flag = True
+            elif inp == "N" or inp == "n":
+                all = all
+                flag = True
+            else: 
+                flag = False
+                print ("\nIncorrect symbol\nWrite Y or N")
     return all
 
 def generate(all):
@@ -72,11 +35,6 @@ def generate(all):
             pyperclip.copy(password)
             print ("The Password to be copied to the clipboard!")
             flag = True
-
-
-    #all = string.ascii_letters + string.digits + string.punctuation
-    #passwd = "".join(random.sample(all,length))
-    #print(passwd)
 
 def app():
     print('\nWelcome to Password generator!')
@@ -100,7 +58,6 @@ def app():
         else: 
             flag = True
             print ("\nIncorrect symbol\nWrite Y or N")
-
 
 if __name__ == "__main__":
     app()
