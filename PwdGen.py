@@ -12,41 +12,37 @@ def settings():
         while not flag:
             inp = input(i)
             if inp == "y" or inp == "Y":
+                flag = True
                 all = all + j
-                flag = True
             elif inp == "N" or inp == "n":
-                all = all
                 flag = True
+                all = all
             else: 
                 flag = False
                 print ("\nIncorrect symbol\nWrite Y or N")
-    return all
+    if all == "": 
+        print("\nError: All parameters in null!\nStart now.")
+        settings()
+    else: 
+        generate(all)
 
 def generate(all):
     flag = False
     while not flag:
         length = input('\nEnter the length of password: ')
         if not length.isdigit(): #isinstance(length, (int)):
-            print ("\nIt's not a number")
             flag = False
+            print ("\nIt's not a number")
         else:
+            flag = True
             length = int(length)
             password = "".join(secrets.choice(all) for i in range(length)) 
             print('\nPassword -> %s' % password)
             pyperclip.copy(password)
             print ("The Password to be copied to the clipboard!")
-            flag = True
+            next(all)
 
-def check(all):
-    if all == "": 
-        print("\nError: All parameters in null!\nStart now.")
-        settings()
-
-def app():
-    print('\nWelcome to Password generator!')
-    settings()
-    check(all)
-    generate(all)
+def next(all):
     flag = False
     while not flag:
         new = input('\nGenerate a new password? (Y,y/N,n)')
@@ -56,11 +52,10 @@ def app():
                 generate(all)
             elif current == "N" or current == "n":
                 settings()
-                check(all)
                 generate(all)
             else:
-                print ("\nIncorrect symbol\nWrite Y or N")
                 flag = False
+                print ("\nIncorrect symbol\nWrite Y or N")
         elif new == "N" or new == "n":
             print ("\nExit\n")
             sys.exit()
@@ -69,6 +64,7 @@ def app():
             print ("\nIncorrect symbol\nWrite Y or N")
 
 if __name__ == "__main__":
-    app()
+    print('\nWelcome to Password generator!')
+    settings()
 
     
