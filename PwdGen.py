@@ -53,12 +53,10 @@ def app():
             current = input('\nUse current settings? (Y,y/N,n)')
             if current == "y" or current == "Y":
                 generate(all)
-                flag = True
             elif current == "N" or current == "n":
                 settings()
                 check(all)
                 generate(all)
-                flag = True
             else:
                 print ("\nIncorrect symbol\nWrite Y or N")
                 flag = False
