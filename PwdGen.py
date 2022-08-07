@@ -27,6 +27,7 @@ def generate(all):
     while not flag:
         length = input('\nEnter the length of password: ')
         if not length.isdigit(): #isinstance(length, (int)):
+            print ("\nIt's not a number")
             flag = False
         else:
             length = int(length)
