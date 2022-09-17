@@ -1,7 +1,8 @@
 from src.generate import generate
 from src.Config import Config
+import string
 
-def settings():
+def settings() -> string:
     global all
     all = ""
     for i,j  in zip(Config.inputs, Config.variables):
