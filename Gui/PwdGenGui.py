@@ -122,18 +122,16 @@ class QLabelBuddy(QDialog, QWidget) :
     def GeneratePwd(self):
         all = ""
         count = int(self.countLineEdit.text())
-        if self.lowercaseyes.isChecked() == True:
+        
+        if self.lowercaseyes.isChecked():
             all = all + string.ascii_lowercase
-        else: all = all
-        if self.uppercaseyes.isChecked() == True:
+        if self.uppercaseyes.isChecked():
             all = all + string.ascii_uppercase
-        else: all = all
-        if self.digitsyes.isChecked() == True:
+        if self.digitsyes.isChecked():
             all = all + string.digits
-        else: all = all
-        if self.punctuationyes.isChecked() == True:
+        if self.punctuationyes.isChecked():
             all = all + string.punctuation
-        else: all = all
+
         if (all == ""):
             self.pwd.setText("Error: all parameters is empty")
         else:
